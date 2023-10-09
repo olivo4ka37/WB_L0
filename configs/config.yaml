@@ -1,0 +1,10 @@
+port: "8000"
+clusterID: "test-cluster"
+
+db:
+  host:     "localhost"
+  port:     "5040"
+  username: "postgres"
+  password: "qwerty"
+  dbname:   "l0db"
+  sslmode:  "disable"
