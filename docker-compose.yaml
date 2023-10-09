@@ -1,0 +1,19 @@
+version: "4.2"
+services:
+  postgres:
+    image: postgres
+    restart: on-failure
+    container_name: wbl0
+    environment:
+      POSTGRES_DB: "l0db"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "qwerty"
+    ports:
+      - "5040:5432"
+  
+  nats-streaming:
+    image: nats-streaming
+    restart: no
+    container_name: nats-stream
+    ports:
+      - "4222:4222"
