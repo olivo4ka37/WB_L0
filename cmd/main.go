@@ -1,7 +1,8 @@
 package main
 
 import (
-	"github.com/olivo4ka37/WB_L0/repository"
+	"github.com/olivo4ka37/WB_L0/internal/cache"
+	"github.com/olivo4ka37/WB_L0/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 )
@@ -23,6 +24,8 @@ func main() {
 	if err != nil {
 		logrus.Fatalf("failed to connect database:%s", err.Error())
 	}
+
+	cache := cache.NewCache()
 }
 
 func initConfig() error {
