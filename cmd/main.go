@@ -1,8 +1,12 @@
 package main
 
 import (
+	"fmt"
 	"github.com/olivo4ka37/WB_L0/internal/cache"
+	"github.com/olivo4ka37/WB_L0/pkg/handler"
 	"github.com/olivo4ka37/WB_L0/pkg/repository"
+	"github.com/olivo4ka37/WB_L0/pkg/service"
+	WB_L0 "github.com/olivo4ka37/WB_L0/server"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 )
@@ -26,6 +30,19 @@ func main() {
 	}
 
 	cache := cache.NewCache()
+
+	repos := repository.NewRepository(database)
+	services := service.NewService(repos, cache)
+	handlers := handler.NewHandler(services)
+	server := new(WB_L0.Server)
+
+	if err := server.Run(viper.GetString("port"), handlers.InitRoutes()); err != nil {
+		logrus.Fatalf("error occured while running server: %s", err.Error())
+	}
+
+	fmt.Println(database)
+	fmt.Println("all fine dw")
+
 }
 
 func initConfig() error {
