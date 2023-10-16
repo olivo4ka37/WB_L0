@@ -16,4 +16,4 @@ services:
     restart: no
     container_name: nats-stream
     ports:
-      - "4222:4222"
+      - 4222:4222
