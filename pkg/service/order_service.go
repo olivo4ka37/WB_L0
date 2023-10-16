@@ -13,10 +13,10 @@ type OrderService struct {
 	cache cache.MemoryCache
 }
 
-func NewOrderService(repo repository.Orders, cache cache.MemoryCache) *OrderService {
+func NewOrderService(repo repository.Orders, cache *cache.MemoryCache) *OrderService {
 	return &OrderService{
 		repo:  repo,
-		cache: cache,
+		cache: *cache,
 	}
 }
 

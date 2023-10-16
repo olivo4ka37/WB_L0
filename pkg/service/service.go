@@ -13,13 +13,15 @@ type Orders interface {
 }
 
 type Service struct {
-	Repo  Orders
-	Cache *cache.MemoryCache
+	Repo         Orders
+	Cache        *cache.MemoryCache
+	ServiceOrder *OrderService
 }
 
 func NewService(repos *repository.Repository, cache *cache.MemoryCache) *Service {
 	return &Service{
-		Repo:  repos,
-		Cache: cache,
+		Repo:         repos,
+		Cache:        cache,
+		ServiceOrder: NewOrderService(repos, cache),
 	}
 }
